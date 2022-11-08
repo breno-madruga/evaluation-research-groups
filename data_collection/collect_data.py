@@ -6,11 +6,6 @@
 # It is avaliable on this [link](https://pypi.org/project/pybliometrics/).
 
 ########################################################################
-# Uncomment to install the library.
-# %pip install pybliometrics
-########################################################################
-
-########################################################################
 # Importing the required libraries.
 import csv, pandas as pd, numpy as np
 from datetime import datetime

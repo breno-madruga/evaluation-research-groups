@@ -8,7 +8,7 @@
 
 # Importing required libraries.
 import os, csv, pandas as pd, numpy as np, matplotlib.pyplot as plt, seaborn as sns
-import networkx as nx, glob, plotly.express as px
+import networkx as nx, glob
 from sklearn.preprocessing import StandardScaler
 from sklearn.cluster import KMeans
 from sklearn.metrics import classification_report, ConfusionMatrixDisplay
@@ -252,6 +252,8 @@ def plot_single_line_chart(x_values, y_values, x_label, y_label, title, name_fig
     fig.tight_layout()
     if name_fig:
         plt.savefig(name_fig)
+    plt.close()
+
 
 def plot_multiple_line_chart(dataframe, x_value, y_values, y_labels, title, xaxis_label, yaxis_label,
                              title_legend=None, name_fig=None, y_is_int=False, external_legend=True,
@@ -277,6 +279,8 @@ def plot_multiple_line_chart(dataframe, x_value, y_values, y_labels, title, xaxi
     fig.tight_layout()
     if name_fig:
         plt.savefig(name_fig)
+    plt.close()
+
 
 def plot_multiple_line_chart_sns(dataframe, x_value, y_value, y_value_style, title, xaxis_label, yaxis_label,
                                  y_lim_max=1, has_error=False, has_legend=True, title_legend=None, labels_legend=None,
@@ -308,6 +312,8 @@ def plot_multiple_line_chart_sns(dataframe, x_value, y_value, y_value_style, tit
     plt.tight_layout()
     if name_fig:
         plt.savefig(name_fig)
+    plt.close()
+
 
 def plot_clusters(dataframe, x_value, y_value, class_value, size_value, label_value, x_label, y_label, title, num_bins=5,
                   space_legend=2, name_fig=None):
@@ -331,6 +337,8 @@ def plot_clusters(dataframe, x_value, y_value, class_value, size_value, label_va
     fig.tight_layout()
     if name_fig:
         plt.savefig(name_fig)
+    plt.close()
+
 
 def plot_overlapping_kdes(dataframe, x_value, hue_value, x_label, xlim=None, name_fig=None):
     sns.set_theme(style="white", rc={"axes.facecolor": (0, 0, 0, 0)})
@@ -363,11 +371,15 @@ def plot_overlapping_kdes(dataframe, x_value, hue_value, x_label, xlim=None, nam
     ax.set(xlim=(None, xlim))
     if name_fig:
         plt.savefig(name_fig)
+    plt.close()
+
 
 def plot_confusion_matrix(y_real, y_pred, name_fig=None):
     ConfusionMatrixDisplay.from_predictions(y_real, y_pred, colorbar=False)
     if name_fig:
         plt.savefig(name_fig)
+    plt.close()
+
 
 ########################################################################
 # 4.2. Clustering Methods
@@ -385,6 +397,7 @@ def clustering_kmeans(dataframe, n_clusters):
     y_pred = model.predict(X)
 
     return y_pred
+
 
 # Defining the Elbow method.
 def elbow_method(dataframe, max_k):
@@ -405,6 +418,7 @@ def elbow_method(dataframe, max_k):
         sse[k] = sse[k].sum()
     return pd.Series(sse)
 
+
 # Function to generate a net with the cluster of each node.
 def generate_net_cluster(graph, dataframe, name_file):
     G = nx.Graph(graph)
@@ -416,6 +430,7 @@ def generate_net_cluster(graph, dataframe, name_file):
     nx.set_node_attributes(G, attrs)
     nx.write_gexf(G, name_file)
 
+
 # Function to discretize the research line for each member.
 def discretize_research_line(research_line):
     if research_line == "Automation and Systems":
@@ -426,6 +441,7 @@ def discretize_research_line(research_line):
         return 3
     else:
         return None
+
 
 # Function to define the research line from the cluster.
 def set_research_line_from_cluster(dataframe, num_members_per_line):
@@ -446,6 +462,7 @@ def set_research_line_from_cluster(dataframe, num_members_per_line):
     dataframe["pred_rl"] = dataframe["pred_rl"].astype("category")
     return dataframe.pred_rl.copy()
 
+
 ########################################################################
 # 4.3. Embedding Methods
 ########################################################################
@@ -461,6 +478,7 @@ def get_vector_from_graph(graph, num_dimension=2, num_window=10):
         data.append({**node[1], **vector})
     return pd.DataFrame(data).rename(columns={"label": "id_scopus"})
 
+
 # Function to create the embedding vectors from a list of graph.
 def get_graph_embedding(graphs, num_dimension=2):
     graphs = {k: nx.convert_node_labels_to_integers(G) for k, G in graphs.items()}
@@ -471,6 +489,7 @@ def get_graph_embedding(graphs, num_dimension=2):
     data["year"] = list(graphs.keys())
     data.iloc[:, -2:] = embeddings
     return data
+
 
 ########################################################################
 # 5. Exploratory Data Analysis
@@ -658,11 +677,11 @@ def get_data_researcher(dataframe, year):
     data["id_alt"] += 1
     return data
 
-# Clustering the members.
-dataframes = [df_members_4_window, df_members_2_window]
-for year, idx in {2012: 0, 2016: 0, 2020: 0, 2022: 1}.items():
+
+# Function to cluster the researchers.
+def clustering_researchers(dataframe, year):
     # Gettind and preprocessing the data.
-    df = get_data_researcher(dataframes[idx].copy(), year)
+    df = get_data_researcher(dataframe, year)
 
     # Clustering the data.
     df["cluster"] = clustering_kmeans(df.iloc[:, 4:].copy(), 3)
@@ -685,6 +704,13 @@ for year, idx in {2012: 0, 2016: 0, 2020: 0, 2022: 1}.items():
     df.to_csv("data_analysis_pipeline/data/output/cluster_metrics_{}.csv".format(year),
               quoting=csv.QUOTE_ALL, index=False)
 
+
+# Clustering the members.
+dataframes = [df_members_4_window, df_members_2_window]
+for year, idx in {2012: 0, 2016: 0, 2020: 0, 2022: 1}.items():
+    clustering_researchers(dataframes[idx].copy(), year)
+
+
 ########################################################################
 # 5.2.1.2. Node Embeddings
 ########################################################################
@@ -703,12 +729,11 @@ def get_data_researcher(network, dataframe, year, dimensions=10):
     data = data[[*data.columns.tolist()[:3], *data.columns.tolist()[-1:], *data.columns.tolist()[3:-1]]]
     return data
 
-# Clustering the members.
-nets = [net_4_window, net_2_window]
-dataframes = [df_members_4_window, df_members_2_window]
-for year, idx in {2012: 0, 2016: 0, 2020: 0, 2022: 1}.items():
+
+# Function to cluster the researchers.
+def clustering_researchers(network, dataframe, year):
     # Gettind and preprocessing the data.
-    data = get_data_researcher(nets[idx][year], dataframes[idx], year, 13)
+    data = get_data_researcher(network, dataframe, year, 13)
 
     # Clustering the data.
     data.loc[:, "cluster"] = clustering_kmeans(data[data.columns.tolist()[4:]].copy(), 3)
@@ -730,3 +755,10 @@ for year, idx in {2012: 0, 2016: 0, 2020: 0, 2022: 1}.items():
         name_file="data_analysis_pipeline/data/output/cluster_emb_{}.gexf".format(year))
     data.to_csv("data_analysis_pipeline/data/output/cluster_emb_{}.csv".format(year),
                 quoting=csv.QUOTE_ALL, index=False)
+
+
+# Clustering the members.
+nets = [net_4_window, net_2_window]
+dataframes = [df_members_4_window, df_members_2_window]
+for year, idx in {2012: 0, 2016: 0, 2020: 0, 2022: 1}.items():
+    clustering_researchers(nets[idx][year], dataframes[idx].copy(), year)
