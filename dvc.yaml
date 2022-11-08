@@ -1,0 +1,42 @@
+stages:
+  preprocess:
+    cmd: python data_analysis_pipeline/scripts/preprocess.py
+    deps:
+    - data_analysis_pipeline/data/raw/manuscripts_group.csv
+    - data_analysis_pipeline/data/raw/members_stats.csv
+    - data_analysis_pipeline/scripts/preprocess.py
+    outs:
+    - data_analysis_pipeline/data/prepared/members_stats_final.csv
+    - data_analysis_pipeline/data/prepared/production_members_final.csv
+  generate_nets:
+    cmd: python data_analysis_pipeline/scripts/generate_nets.py
+    deps:
+    - data_analysis_pipeline/data/prepared/members_stats_final.csv
+    - data_analysis_pipeline/data/prepared/production_members_final.csv
+    - data_analysis_pipeline/scripts/generate_nets.py
+    outs:
+    - data_analysis_pipeline/data/networks
+  generate_metrics:
+    cmd: python data_analysis_pipeline/scripts/generate_metrics.py
+    deps:
+    - data_analysis_pipeline/data/networks
+    - data_analysis_pipeline/data/prepared/production_members_final.csv
+    - data_analysis_pipeline/scripts/generate_metrics.py
+    outs:
+    - data_analysis_pipeline/data/prepared/metrics_cumulative.csv
+    - data_analysis_pipeline/data/prepared/metrics_cumulative_2_window.csv
+    - data_analysis_pipeline/data/prepared/metrics_cumulative_4_window.csv
+    - data_analysis_pipeline/data/prepared/metrics_isolated.csv
+  data_analysis:
+    cmd: python data_analysis_pipeline/scripts/generate_analysis.py
+    deps:
+    - data_analysis_pipeline/data/networks
+    - data_analysis_pipeline/data/prepared/members_stats_final.csv
+    - data_analysis_pipeline/data/prepared/metrics_cumulative.csv
+    - data_analysis_pipeline/data/prepared/metrics_cumulative_2_window.csv
+    - data_analysis_pipeline/data/prepared/metrics_cumulative_4_window.csv
+    - data_analysis_pipeline/data/prepared/metrics_isolated.csv
+    - data_analysis_pipeline/data/prepared/production_members_final.csv
+    - data_analysis_pipeline/scripts/generate_analysis.py
+    outs:
+    - data_analysis_pipeline/data/output

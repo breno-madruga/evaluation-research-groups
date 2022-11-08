@@ -1,0 +1,97 @@
+schema: '2.0'
+stages:
+  preprocess:
+    cmd: python data_analysis_pipeline/scripts/preprocess.py
+    deps:
+    - path: data_analysis_pipeline/data/raw/manuscripts_group.csv
+      md5: d80b8191ee7a169ec00bd2c3d76f6c6e
+      size: 15278866
+    - path: data_analysis_pipeline/data/raw/members_stats.csv
+      md5: 3a119e0e1dff9a0dfc8cf087378113a8
+      size: 190167
+    - path: data_analysis_pipeline/scripts/preprocess.py
+      md5: 9c23b004268b0bb1ae3e434ba20da05c
+      size: 24009
+    outs:
+    - path: data_analysis_pipeline/data/prepared/members_stats_final.csv
+      md5: b8738781fbcfcd6b73d53135e5a8d54d
+      size: 109138
+    - path: data_analysis_pipeline/data/prepared/production_members_final.csv
+      md5: 8909e8baf0a0da9f3b0b7b1eb7e90d8d
+      size: 8985812
+  generate_nets:
+    cmd: python data_analysis_pipeline/scripts/generate_nets.py
+    deps:
+    - path: data_analysis_pipeline/data/prepared/members_stats_final.csv
+      md5: b8738781fbcfcd6b73d53135e5a8d54d
+      size: 109138
+    - path: data_analysis_pipeline/data/prepared/production_members_final.csv
+      md5: 8909e8baf0a0da9f3b0b7b1eb7e90d8d
+      size: 8985812
+    - path: data_analysis_pipeline/scripts/generate_nets.py
+      md5: c7d54fb061eb6352fbaac93096f170e8
+      size: 7853
+    outs:
+    - path: data_analysis_pipeline/data/networks
+      md5: c4fef7373107900a8b19c1f439daba33.dir
+      size: 26071012
+      nfiles: 52
+  generate_metrics:
+    cmd: python data_analysis_pipeline/scripts/generate_metrics.py
+    deps:
+    - path: data_analysis_pipeline/data/networks
+      md5: c4fef7373107900a8b19c1f439daba33.dir
+      size: 26071012
+      nfiles: 52
+    - path: data_analysis_pipeline/data/prepared/production_members_final.csv
+      md5: 8909e8baf0a0da9f3b0b7b1eb7e90d8d
+      size: 8985812
+    - path: data_analysis_pipeline/scripts/generate_metrics.py
+      md5: 342bddcbfaaeb00ceffe64c95b20e1c0
+      size: 5027
+    outs:
+    - path: data_analysis_pipeline/data/prepared/metrics_cumulative.csv
+      md5: 3386e2dd02bd3a65630fdee4bed83244
+      size: 9111862
+    - path: data_analysis_pipeline/data/prepared/metrics_cumulative_2_window.csv
+      md5: 9f98cafb1f51c431708ea2e2a2ff7274
+      size: 3886650
+    - path: data_analysis_pipeline/data/prepared/metrics_cumulative_4_window.csv
+      md5: 7c639a6ec68252559c7792a4d7d8fd46
+      size: 6095814
+    - path: data_analysis_pipeline/data/prepared/metrics_isolated.csv
+      md5: 7aceff1e96d0970b88169bdc7096e287
+      size: 2211880
+  data_analysis:
+    cmd: python data_analysis_pipeline/scripts/generate_analysis.py
+    deps:
+    - path: data_analysis_pipeline/data/networks
+      md5: c4fef7373107900a8b19c1f439daba33.dir
+      size: 26071012
+      nfiles: 52
+    - path: data_analysis_pipeline/data/prepared/members_stats_final.csv
+      md5: b8738781fbcfcd6b73d53135e5a8d54d
+      size: 109138
+    - path: data_analysis_pipeline/data/prepared/metrics_cumulative.csv
+      md5: 3386e2dd02bd3a65630fdee4bed83244
+      size: 9111862
+    - path: data_analysis_pipeline/data/prepared/metrics_cumulative_2_window.csv
+      md5: 9f98cafb1f51c431708ea2e2a2ff7274
+      size: 3886650
+    - path: data_analysis_pipeline/data/prepared/metrics_cumulative_4_window.csv
+      md5: 7c639a6ec68252559c7792a4d7d8fd46
+      size: 6095814
+    - path: data_analysis_pipeline/data/prepared/metrics_isolated.csv
+      md5: 7aceff1e96d0970b88169bdc7096e287
+      size: 2211880
+    - path: data_analysis_pipeline/data/prepared/production_members_final.csv
+      md5: 8909e8baf0a0da9f3b0b7b1eb7e90d8d
+      size: 8985812
+    - path: data_analysis_pipeline/scripts/generate_analysis.py
+      md5: e6434874b02138eb9f2bfb20ac261a96
+      size: 35579
+    outs:
+    - path: data_analysis_pipeline/data/output
+      md5: b124b37bc533b561d689f203246c287b.dir
+      size: 17175114
+      nfiles: 33
