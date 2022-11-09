@@ -205,7 +205,7 @@ def collect_data_members(ids_scopus):
 data = collect_data_members(scopus_ids)
 
 # Saving the data into CSV file.
-pd.DataFrame(data).to_csv("../data_analysis_pipeline/data/raw/members_stats.csv", index=False, quoting=csv.QUOTE_ALL)
+pd.DataFrame(data).to_csv("raw_data/members_stats.csv", index=False, quoting=csv.QUOTE_ALL)
 
 ########################################################################
 # 1.2. Getting the publications' data from list of EIDs
@@ -318,7 +318,7 @@ def collect_data_manuscripts(data_members):
     return data
 
 # Getting the list of manuscripts' EIDs for each members.
-data_members = pd.read_csv("../data_analysis_pipeline/data/raw/members_stats.csv",
+data_members = pd.read_csv("raw_data/members_stats.csv",
                               index_col=False)[["complete_name", "list_eids_documents"]]
 data_members.list_eids_documents = data_members.list_eids_documents.apply(eval)
 data_members = data_members.to_dict("records")
@@ -327,5 +327,5 @@ data_members = data_members.to_dict("records")
 papers = collect_data_manuscripts(data_members)
 
 # Saving the data into CSV file.
-pd.DataFrame(papers).to_csv("../data_analysis_pipeline/data/raw/manuscripts_group.csv",
+pd.DataFrame(papers).to_csv("raw_data/manuscripts_group.csv",
                             index=False, quoting=csv.QUOTE_ALL)

@@ -4,7 +4,7 @@
 
 ## Description
 
-This repository is responsible for versioning of the required source code to perform the proposed methodology of evaluation and cohesion analysis of research groups, which is in the process of being published in the JOI (Journal of Informetrics) journal.
+This repository is responsible for versioning of the required source code to perform the proposed methodology of evaluation and cohesion analysis of research groups, which has been submitted in the JOI (Journal of Informetrics) journal.
 
 <div align="center">
   <img alt="Proposed_Methodology" title="Proposed_Methodology" src="./methodology_overview/methodology.png" width="50%" />
@@ -65,7 +65,7 @@ git add data_analysis_pipeline/data/.gitignore
 git add data_analysis_pipeline/data/raw/*.csv.dvc
 ```
 
-If you want to use the version used, the raw data are available on [Mendeley Data](https://doi.org/10.17632/rwfd6p6xsd.1). Also, they are contained into the folder ``data_analysis_pipeline/data/raw``.
+If you want to use the version used, the raw data are available on [Mendeley Data](https://doi.org/10.17632/rwfd6p6xsd.1). Also, they are contained into the folder ``data_collection/raw_data``.
 
 ### 2) Preprocess
 
@@ -179,7 +179,7 @@ For the execution of the following steps, I will consider that you already clone
 
 For reusing the raw data that I already collected and the pipeline created, you can do the following steps:
 
-1. Download the raw data, that is available on Data Mendeley, and put them in the ``data_analysis_pipeline/data/raw`` folder. You can download these files from this [link](https://doi.org/10.17632/rwfd6p6xsd.1). This step is optional, because the raw data are also contained into the ``data_analysis_pipeline/data/raw``.
+1. Download the raw data, that is available on Data Mendeley, and put them in the ``data_analysis_pipeline/data/raw`` folder. You can download these files from this [link](https://doi.org/10.17632/rwfd6p6xsd.1).
 
 2. Execute the DVC pipeline. So, you can execute the following command:
     ```
