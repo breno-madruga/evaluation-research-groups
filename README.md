@@ -179,7 +179,7 @@ For the execution of the following steps, I will consider that you already clone
 
 For reusing the raw data that I already collected and the pipeline created, you can do the following steps:
 
-1. Download the raw data, that is available on Data Mendeley, and put them in the ``data_analysis_pipeline/data/raw`` folder. You can download these files from this [link](https://doi.org/10.17632/rwfd6p6xsd.1).
+1. Download the raw data, that is available on Mendeley Data, and put them in the ``data_analysis_pipeline/data/raw`` folder. You can download these files from this [link](https://doi.org/10.17632/rwfd6p6xsd.1).
 
 2. Execute the DVC pipeline. So, you can execute the following command:
     ```

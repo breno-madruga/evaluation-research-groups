@@ -733,7 +733,7 @@ def get_data_researcher(network, dataframe, year, dimensions=10):
 # Function to cluster the researchers.
 def clustering_researchers(network, dataframe, year):
     # Gettind and preprocessing the data.
-    data = get_data_researcher(network, dataframe, year, 13)
+    data = get_data_researcher(network, dataframe, year)
 
     # Clustering the data.
     data.loc[:, "cluster"] = clustering_kmeans(data[data.columns.tolist()[4:]].copy(), 3)
