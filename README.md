@@ -4,7 +4,7 @@
 
 ## Description
 
-This repository is responsible for versioning of the required source code to perform the proposed methodology of evaluation and cohesion analysis of research groups, which has been submitted in the JOI (Journal of Informetrics) journal.
+This repository is responsible for versioning of the required source code to perform the proposed methodology of evaluation and cohesion analysis of research groups, which has been submitted in the Scientometrics journal.
 
 <div align="center">
   <img alt="Proposed_Methodology" title="Proposed_Methodology" src="./methodology_overview/methodology.png" width="50%" />
@@ -198,14 +198,14 @@ Santos, Breno; Silva, Ivanovitch; Costa, Daniel G. (2022), **Research Group Data
 
 ### How to download the data?
 
-You can download the data on Data Mendeley from this [link](https://doi.org/10.17632/rwfd6p6xsd.1).
+You can download the data on Mendeley Data from this [link](https://doi.org/10.17632/rwfd6p6xsd.1).
 
 <!-- 
 [![DOI:DOI_PAPER](https://zenodo.org/badge/DOI/DOI_PAPER)](DOI_PAPER)
 
 ### How does it cite?
 
-Santos, Breno Santana; Silva, Ivanovitch; Costa, Daniel G. **A temporal approach to support the evaluation and cohesion analysis of research groups**. *Journal of Informetrics*, 2022 (in submission process).
+Santos, Breno Santana; Silva, Ivanovitch; Costa, Daniel G. **A temporal approach to support the evaluation and cohesion analysis of research groups**. *Scientometrics*, 2022 (in submission process).
 
 ### How does the article download?
 
