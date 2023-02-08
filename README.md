@@ -4,7 +4,7 @@
 
 ## Description
 
-This repository is responsible for versioning of the required source code to perform the proposed methodology of evaluation and cohesion analysis of research groups, which has been submitted in the Scientometrics journal.
+This repository is responsible for versioning of the required source code to perform the proposed methodology of evaluation and cohesion analysis of research groups.
 
 <div align="center">
   <img alt="Proposed_Methodology" title="Proposed_Methodology" src="./methodology_overview/methodology.png" width="50%" />
@@ -179,7 +179,7 @@ For the execution of the following steps, I will consider that you already clone
 
 For reusing the raw data that I already collected and the pipeline created, you can do the following steps:
 
-1. Download the raw data, that is available on Mendeley Data, and put them in the ``data_analysis_pipeline/data/raw`` folder. You can download these files from this [link](https://doi.org/10.17632/rwfd6p6xsd.1).
+1. Download the raw data, that is available on Mendeley Data, and put them in the ``data_analysis_pipeline/data/raw`` folder. You can download these files from this [link](https://doi.org/10.17632/rwfd6p6xsd).
 
 2. Execute the DVC pipeline. So, you can execute the following command:
     ```
@@ -190,22 +190,22 @@ For reusing the raw data that I already collected and the pipeline created, you 
 
 ## Citations
 
-[![DOI:10.17632/rwfd6p6xsd.1](https://zenodo.org/badge/DOI/10.17632/rwfd6p6xsd.1.svg)](https://doi.org/10.17632/rwfd6p6xsd.1)
+[![DOI:10.17632/rwfd6p6xsd](https://zenodo.org/badge/DOI/10.17632/rwfd6p6xsd.svg)](https://doi.org/10.17632/rwfd6p6xsd)
 
 ### How to cite the data?
 
-Santos, Breno; Silva, Ivanovitch; Costa, Daniel G. (2022), **Research Group Dataset**, *Mendeley Data*, V1, DOI: 10.17632/rwfd6p6xsd.1.
+Santos, Breno; Silva, Ivanovitch; Costa, Daniel G. (2022), **Research Group Dataset**, *Mendeley Data*, V2, DOI: 10.17632/rwfd6p6xsd.
 
 ### How to download the data?
 
-You can download the data on Mendeley Data from this [link](https://doi.org/10.17632/rwfd6p6xsd.1).
+You can download the data on Mendeley Data from this [link](https://doi.org/10.17632/rwfd6p6xsd).
 
 <!-- 
 [![DOI:DOI_PAPER](https://zenodo.org/badge/DOI/DOI_PAPER)](DOI_PAPER)
 
 ### How does it cite?
 
-Santos, Breno Santana; Silva, Ivanovitch; Costa, Daniel G. **A temporal approach to support the evaluation and cohesion analysis of research groups**. *Scientometrics*, 2022 (in submission process).
+Santos, Breno Santana; Silva, Ivanovitch; Costa, Daniel G. **A temporal approach to support the evaluation and cohesion analysis of research groups**. *Education Sciences*, 2023 (in submission process).
 
 ### How does the article download?
 
